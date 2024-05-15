@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>View Clients</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Client ID</th>
+            <th>Name</th>
+            <th>Contract ID</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client._id }}</td>
+            <td>{{ client.name }}</td>
+            <td>{{ client.contract_id }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
