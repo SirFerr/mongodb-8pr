@@ -17,6 +17,11 @@ class ClientForm(FlaskForm):
     contract_id = IntegerField('Contract ID', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+class DeleteForm(FlaskForm):
+    client_id = IntegerField('Client ID', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -46,7 +51,7 @@ def update_client():
 
 @app.route('/delete_client', methods=['GET', 'POST'])
 def delete_client():
-    form = ClientForm()
+    form = DeleteForm()
     if form.validate_on_submit():
         client_id = form.client_id.data
         db.clients.delete_one({"_id": client_id})

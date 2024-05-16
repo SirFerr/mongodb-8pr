@@ -1,13 +1,11 @@
 db = db.getSiblingDB('security_agency');
 
-// Создание коллекций (таблиц)
 db.createCollection('clients');
 db.createCollection('guards');
 db.createCollection('contracts');
 db.createCollection('schedules');
 db.createCollection('services');
 
-// Создание связи Один-К-Одному между клиентами и контрактами
 db.clients.insertMany([
     { _id: 1, name: 'Client1', contract_id: 1 },
     { _id: 2, name: 'Client2', contract_id: 2 }
@@ -18,7 +16,6 @@ db.contracts.insertMany([
     { _id: 2, client_id: 2, details: 'Contract details for Client2' }
 ]);
 
-// Создание связи Один-Ко-Многим между контрактами и услугами
 db.services.insertMany([
     { _id: 1, name: 'Patrol' },
     { _id: 2, name: 'Guarding' },
@@ -35,7 +32,6 @@ db.contracts.update(
     { $set: { services: [2, 3] } }
 );
 
-// Пример данных для других коллекций
 db.guards.insertMany([
     { _id: 1, name: 'Guard1' },
     { _id: 2, name: 'Guard2' }
